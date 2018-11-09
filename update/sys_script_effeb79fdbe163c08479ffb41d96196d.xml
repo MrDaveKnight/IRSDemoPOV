@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>false</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>dmn_demand</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="dmn_demand">u_better_domainVALCHANGES^EQ<item endquery="false" field="u_better_domain" goto="false" newquery="false" operator="VALCHANGES" or="false" value=""/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Update listed reference count</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+	
+	
+	var myMutex = new global.Mutex('idea_irs_domain');
+	
+	myMutex.setSpinWait(200);     // time to wait between attempts, in ms
+	myMutex.setMaxSpins(125); // maximum number of times to try
+	
+	var oldDomains = previous.u_better_domain.toString().split(",");
+	var newDomains = current.u_better_domain.toString().split(",");
+	var domainGR;
+	var newDomainHash = {};
+	if (current.operation() == "update" || current.operation() == "insert") {
+		for (var i = 0; i < newDomains.length; i++) {
+			newDomainHash[newDomains[i]] = true;
+		}
+		for (i = 0; i < oldDomains.length; i++) {
+			if (newDomainHash[oldDomains[i]] == true) {
+				newDomainHash[oldDomains[i]] = false;
+			}
+			else {
+				ListedRefCntUtils.decrement(myMutex,
+				"u_better_domain_list",
+				oldDomains[i],
+				"x_snc_k_ls_ref_cnt_value");
+			}
+		}
+		for (i in newDomainHash) {
+			if (newDomainHash[i]) {
+				ListedRefCntUtils.increment(myMutex,
+				"u_better_domain_list",
+				i,
+				"x_snc_k_ls_ref_cnt_value");
+			}
+		}
+	}
+	else {
+		// This is a delete
+		for (var x = 0; x < oldDomains.length; x++) {
+			ListedRefCntUtils.decrement(myMutex,
+			"u_better_domain_list",
+			oldDomains[x],
+			"x_snc_k_ls_ref_cnt_value");
+			
+		}
+	}
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-11-09 05:39:24</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>effeb79fdbe163c08479ffb41d96196d</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>Update listed reference count</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Listed Reference Counter" source="x_snc_k_ls_ref_cnt">ab1ef31fdbe163c08479ffb41d961976</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Listed Reference Counter">ab1ef31fdbe163c08479ffb41d961976</sys_scope>
+        <sys_update_name>sys_script_effeb79fdbe163c08479ffb41d96196d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-11-09 15:01:15</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=effeb79fdbe163c08479ffb41d96196d"/>
+</record_update>

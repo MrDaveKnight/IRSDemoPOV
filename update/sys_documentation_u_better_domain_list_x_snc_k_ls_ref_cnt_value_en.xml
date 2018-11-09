@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="x_snc_k_ls_ref_cnt_value" label="Listed reference count" language="en" table="u_better_domain_list">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>x_snc_k_ls_ref_cnt_value</element>
+            <help/>
+            <hint/>
+            <label>Listed reference count</label>
+            <language>en</language>
+            <name>u_better_domain_list</name>
+            <plural>Listed reference counts</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-11-09 05:51:02</sys_created_on>
+            <sys_id>7699c8ebdb2563c08479ffb41d96193c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Listed reference count</sys_name>
+            <sys_package display_value="Listed Reference Counter" source="x_snc_k_ls_ref_cnt">ab1ef31fdbe163c08479ffb41d961976</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Listed Reference Counter">ab1ef31fdbe163c08479ffb41d961976</sys_scope>
+            <sys_update_name>sys_documentation_u_better_domain_list_x_snc_k_ls_ref_cnt_value_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-11-09 05:51:02</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>
