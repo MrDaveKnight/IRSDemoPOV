@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element label="Better Domain List" max_length="40" name="u_better_domain_list" type="collection">
-        <element default="0" label="Listed reference count" max_length="40" name="x_snc_k_ls_ref_cnt_value" type="integer"/>
+        <element default="0" label="Listed reference count" max_length="40" name="x_snc_k_ls_ref_cnt_value" read_only="true" type="integer"/>
     </element>
 </database>
