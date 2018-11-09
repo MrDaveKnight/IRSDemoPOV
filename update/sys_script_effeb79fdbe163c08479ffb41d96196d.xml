@@ -50,7 +50,7 @@
 				newDomainHash[oldDomains[i]] = false;
 			}
 			else {
-				ListedRefCntUtils.decrement(myMutex,
+				global.ListedRefCntUtils.decrement(myMutex,
 				"u_better_domain_list",
 				oldDomains[i],
 				"x_snc_k_ls_ref_cnt_value");
@@ -58,7 +58,7 @@
 		}
 		for (i in newDomainHash) {
 			if (newDomainHash[i]) {
-				ListedRefCntUtils.increment(myMutex,
+				global.ListedRefCntUtils.increment(myMutex,
 				"u_better_domain_list",
 				i,
 				"x_snc_k_ls_ref_cnt_value");
@@ -68,7 +68,7 @@
 	else {
 		// This is a delete
 		for (var x = 0; x < oldDomains.length; x++) {
-			ListedRefCntUtils.decrement(myMutex,
+			global.ListedRefCntUtils.decrement(myMutex,
 			"u_better_domain_list",
 			oldDomains[x],
 			"x_snc_k_ls_ref_cnt_value");
@@ -82,7 +82,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>effeb79fdbe163c08479ffb41d96196d</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>Update listed reference count</sys_name>
         <sys_overrides/>
         <sys_package display_value="Listed Reference Counter" source="x_snc_k_ls_ref_cnt">ab1ef31fdbe163c08479ffb41d961976</sys_package>
@@ -90,7 +90,7 @@
         <sys_scope display_value="Listed Reference Counter">ab1ef31fdbe163c08479ffb41d961976</sys_scope>
         <sys_update_name>sys_script_effeb79fdbe163c08479ffb41d96196d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-11-09 15:34:52</sys_updated_on>
+        <sys_updated_on>2018-11-09 15:39:45</sys_updated_on>
         <template/>
         <when>after</when>
     </sys_script>
